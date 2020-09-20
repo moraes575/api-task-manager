@@ -24,9 +24,14 @@
   },
   "homepage": "https://github.com/moraes575/api-task-manager#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.2",
-    "mongoose": "^5.10.6"
+    "mongoose": "^5.10.6",
+    "multer": "^1.4.2",
+    "sharp": "^0.26.1",
+    "validator": "^13.1.17"
   },
   "devDependencies": {
     "env-cmd": "^10.1.0",
