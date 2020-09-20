@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const validator = require('validator')
-const bcrypt = require('jsonwebtoken')
+const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const Task = require('./task')
 
@@ -61,7 +61,7 @@ userSchema.virtual('tasks', {
     foreignField: 'owner'
 })
 
-userSchema.methods.toJSON = () => {
+userSchema.methods.toJSON = function () {
     const user = this
     const userObject = user.toObject()
 
@@ -72,7 +72,7 @@ userSchema.methods.toJSON = () => {
     return userObject
 }
 
-userSchema.methods.generateAuthToken = async () => {
+userSchema.methods.generateAuthToken = async function () {
     const user = this
     const token = jwt.sign({ _id: user._id.toString() }, process.env.JWT_SECRET)
 
@@ -83,7 +83,7 @@ userSchema.methods.generateAuthToken = async () => {
 }
 
 userSchema.statics.findByCredentials = async (email, password) => {
-    const user = await user.findOne({ email })
+    const user = await User.findOne({ email })
 
     if (!user) {
         throw new Error('Unable to login')
@@ -98,7 +98,7 @@ userSchema.statics.findByCredentials = async (email, password) => {
     return user
 }
 
-userSchema.pre('save', async (next) => {
+userSchema.pre('save', async function (next) {
     const user = this
 
     if (user.isModified('password')) {
@@ -108,12 +108,12 @@ userSchema.pre('save', async (next) => {
     next()
 })
 
-userSchema.pre('remove', async (next) => {
+userSchema.pre('remove', async function (next) {
     const user = this
     await Task.deleteMany({ owner: user._id })
     next()
 })
 
-const User = mongoose.model('User', userSchema)
+const User = mongoose.model('users', userSchema)
 
 module.exports = User
