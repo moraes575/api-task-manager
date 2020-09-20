@@ -1,0 +1,35 @@
+{
+  "name": "api-task-manager",
+  "version": "1.0.0",
+  "description": "Node.js API for task manager",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "env-cmd -f ./config/dev.env nodemon src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moraes575/api-task-manager.git"
+  },
+  "keywords": [
+    "api",
+    "node",
+    "mongodb"
+  ],
+  "author": "Matheus Moraes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/moraes575/api-task-manager/issues"
+  },
+  "homepage": "https://github.com/moraes575/api-task-manager#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongodb": "^3.6.2",
+    "mongoose": "^5.10.6"
+  },
+  "devDependencies": {
+    "env-cmd": "^10.1.0",
+    "nodemon": "^2.0.4"
+  }
+}
