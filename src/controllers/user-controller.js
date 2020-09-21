@@ -1,5 +1,6 @@
 const User = require('../models/user')
 const sharp = require('sharp')
+const { sendWelcomeEmail, sendCancelationEmail } = require('../emails/account')
 
 exports.getUser = async (req, res) => {
     res.send(req.user)
@@ -25,6 +26,7 @@ exports.saveUser = async (req, res) => {
 
     try {
         await user.save()
+        sendWelcomeEmail(user.email, user.name)
         const token = await user.generateAuthToken()
         res.status(201).send({ user, token })
     } catch (e) {
@@ -95,6 +97,7 @@ exports.uploadUserAvatar = async (req, res) => {
 exports.deleteUser = async (req, res) => {
     try {
         await req.user.remove()
+        sendCancelationEmail(req.user.email, req.user.name)
         res.status(204).send()
     } catch (e) {
         res.status(500).send()
