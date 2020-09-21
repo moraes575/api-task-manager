@@ -19,7 +19,7 @@ const upload = multer({
 })
 
 router.get('/', auth, userController.getUser)
-router.get('/:id/avatar', auth, userController.getUserAvatar)
+router.get('/:id/avatar', userController.getUserAvatar)
 router.post('/', userController.saveUser)
 router.post('/login', userController.loginUser)
 router.post('/logout', auth, userController.logoutUser)
