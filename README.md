@@ -8,7 +8,7 @@ Node.js task management application with NoSQL MongoDB integration
 npm install
 ```
 2. Install and configure MongoDB locally or use a cloud hosting service, such as [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
-3. Create the environment variables (.env file)
+3. Create the environment variables (.env file) inside config folder
 
 4. Run the application
 ```
@@ -19,3 +19,4 @@ npm start
   - JavaScript
   - Express
   - MongoDB
+  - Jest
